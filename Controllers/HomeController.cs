@@ -9,24 +9,18 @@ namespace RegisterEmployee.Controllers
 {
     public class HomeController : Controller
     {
-        
         AttendanceEntities userDB = new AttendanceEntities();
 
         // GET: LogIn
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult LogIn()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(UserLogin userLogin)
+        public ActionResult LogIn(UserLogin userLogin)
         {
 
             var checkLogin =
@@ -52,7 +46,7 @@ namespace RegisterEmployee.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("LogIn");
         }
 
         public ActionResult Employee()
@@ -63,9 +57,8 @@ namespace RegisterEmployee.Controllers
             }
             
             
-                ViewBag.Notification = "Please login FIrst";
-            
-            return RedirectToAction("Index");
+            ViewBag.Notification = "Please login FIrst";
+            return RedirectToAction("LogIn");
             
         }
     }

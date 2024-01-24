@@ -6,13 +6,14 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
             @if (Session["UsernameSS"] == null)
             {
-                @Html.ActionLink("Employee Attendance", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Employee Attendance", "LogIn", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
 
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
@@ -27,20 +28,20 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 @if (Session["UsernameSS"] != null)
                 {
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Register", "Employee", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                    @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
-                </ul>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Register", "Employee", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                        @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
+                    </ul>
 
-                <ul class="nav navbar-nav " style="float:right !important">
-                    
-                        
+                    <ul class="nav navbar-nav " style="float:right !important">
+
+
                         <li><p style="color:#fff; margin-top:15px"> Hello @Session["UsernameSS"]</p></li>
                         <li style="color:#fff; margin-top:15px; margin-left: 24px"> @Html.ActionLink("Logout", "Logout", "Home")</li>
-                    
 
-                </ul>
+
+                    </ul>
                 }
             </div>
         </div>
@@ -49,12 +50,12 @@
         @RenderBody()
         <hr />
         <footer>
-            
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
 </body>
 </html>

@@ -26,5 +26,6 @@ namespace RegisterEmployee.Models
         }
     
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     }
 }
