@@ -9,7 +9,7 @@ namespace RegisterEmployee.Controllers
 {
     public class HomeController : Controller
     {
-        AttendanceEntities userDB = new AttendanceEntities();
+        private AttendanceEntities userDB = new AttendanceEntities();
 
         // GET: LogIn
         [HttpGet]
@@ -33,7 +33,7 @@ namespace RegisterEmployee.Controllers
                 Session["IDSS"] = userLogin.id.ToString();
                 Session["UsernameSS"] = userLogin.username_log.ToString();
 
-                return RedirectToAction("Employee");
+                return RedirectToAction("Employee", "Employee");
             }
             else
             {
@@ -49,17 +49,6 @@ namespace RegisterEmployee.Controllers
             return RedirectToAction("LogIn");
         }
 
-        public ActionResult Employee()
-        {
-            if (Session["UsernameSS"] != null)
-            {
-                return View();
-            }
-            
-            
-            ViewBag.Notification = "Please login FIrst";
-            return RedirectToAction("LogIn");
-            
-        }
+        
     }
 }

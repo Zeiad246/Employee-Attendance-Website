@@ -9,19 +9,46 @@ namespace RegisterEmployee.Controllers
 {
     public class EmployeeController : Controller
     {
-        AttendanceEntities empDB = new AttendanceEntities();   
+        private AttendanceEntities empDB = new AttendanceEntities();   
         // GET: Employee
         [HttpGet]
-        public ActionResult EmployeeDataEditor()
+        public ActionResult Employee()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult EmployeeDataEditor(Employee employee)
+        public ActionResult Employee(Employee employee)
         {
+            if (Session["UsernameSS"] != null)
+            {
+                //List<SelectListItem> employees = new List<SelectListItem>();
+                //foreach (Employee emp in empDB.Employees)
+                //{
+                //    SelectListItem empItem = new SelectListItem
+                //    {
+                //        Text = emp.employee_name,
+                //        Value = emp.employee_cardID.ToString(),
+                //    };
+
+
+                //    employees.Add(empItem);
+
+                    
+                //}
+
+                //ViewBag.EmployeeNames = employees;
+
+                return View();
+            }
+
             
-            return View();
+
+            
+
+            ViewBag.Notification = "Please Login First";
+            return RedirectToAction("LogIn", "Home");
+
         }
     }
 }

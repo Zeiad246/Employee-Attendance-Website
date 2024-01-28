@@ -29,7 +29,7 @@
                 @if (Session["UsernameSS"] != null)
                 {
                     <ul class="navbar-nav flex-grow-1">
-                        <li>@Html.ActionLink("Register", "Employee", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Register", "Employee", "Employee", new { area = "" }, new { @class = "nav-link"})</li>
                         @*<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                         @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                     </ul>
@@ -38,7 +38,7 @@
 
 
                         <li><p style="color:#fff; margin-top:15px"> Hello @Session["UsernameSS"]</p></li>
-                        <li style="color:#fff; margin-top:15px; margin-left: 24px"> @Html.ActionLink("Logout", "Logout", "Home")</li>
+                        <li style="color: #fff; margin-top:6px; margin-left: 12px"> @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link"})</li>
 
 
                     </ul>
