@@ -18,6 +18,12 @@ namespace RegisterEmployee
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "LogIn", id = UrlParameter.Optional }
             );
+            
+            routes.MapRoute(
+                name: "Registeration",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Employee", action = "Employee", id = UrlParameter.Optional }
+            );
         }
     }
 }

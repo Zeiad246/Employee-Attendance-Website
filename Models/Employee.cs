@@ -18,9 +18,10 @@ namespace RegisterEmployee.Models
         [Display(Name = "Employee ID")]
         public int employee_ID { get; set; }
 
-        [Display(Name = "")]
+        [Display(Name = "Employee Name")]
         public string employee_name { get; set; }
 
+        [Display(Name = "Employee Card ID")]
         public int employee_cardID { get; set; }
 
     }
