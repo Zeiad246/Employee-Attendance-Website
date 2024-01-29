@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,14 +17,32 @@ namespace RegisterEmployee.Controllers
         [HttpGet]
         public ActionResult Employee()
         {
-            return View();
+
+            if (Session["UsernameSS"] != null)
+            {
+
+                string constr = ConfigurationManager.ConnectionStrings["EmployeeConnection"].ToString();
+                SqlConnection _connection = new SqlConnection(constr);
+                SqlDataAdapter _adapter = new SqlDataAdapter("Select * From Employee", constr);
+                DataTable _dataTable = new DataTable();
+                _adapter.Fill(_dataTable);
+                ViewBag.EmployeeList = ToSelectList(_dataTable, "employee_ID", "employee_name");
+
+                return View();
+            }
+
+            ViewBag.Notification = "Please Login First";
+            return RedirectToAction("LogIn", "Home");
+            
         }
 
         [HttpPost]
         public ActionResult Employee(Employee employee)
         {
-            if (Session["UsernameSS"] != null)
-            {
+
+            var emps = employee.employee_ID;
+
+                
                 //List<SelectListItem> employees = new List<SelectListItem>();
                 //foreach (Employee emp in empDB.Employees)
                 //{
@@ -34,21 +55,34 @@ namespace RegisterEmployee.Controllers
 
                 //    employees.Add(empItem);
 
-                    
+
                 //}
 
                 //ViewBag.EmployeeNames = employees;
 
-                return View();
-            }
 
+                return View(employee);
             
-
-            
-
-            ViewBag.Notification = "Please Login First";
-            return RedirectToAction("LogIn", "Home");
 
         }
+
+
+        [NonAction]
+        public SelectList ToSelectList(DataTable table, string valueField, string textField)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = row[textField].ToString(),
+                    Value = row[valueField].ToString()
+                });
+            }
+
+            return new SelectList(list, "Value", "Text");
+        }
+
     }
 }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Employee";
+    //ViewData["Title"] = "Employee";
 }
 
 <h2>Employee</h2>
@@ -19,7 +20,8 @@
             <div class="col-md-10">
                 @Html.LabelFor(model => model.employee_name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="row-fluid col-md-10">
-                    @*@Html.DropDownListFor(model => model.employee_name, ViewBag.EmployeeNames as SelectList, "Select Name", new { @class = "form-control chosen-select", id = "nameDropDown" })*@
+                    @*@Html.DropDownListFor(model => model.employee_name, ViewBag.EmployeeNames as SelectList, "Select Name", new { @class = "form-control chosen-select", id = "nameDropDown" , @onChange = "SelectedValue(this)"})*@
+                    @Html.DropDownListFor(model => model.employee_name, ViewBag.EmployeeList as SelectList, "Select Name", new { @class = "form-control", id = "nameDropDown" })
                 </div>
             </div>
         </div>
@@ -52,6 +54,17 @@
                 $("#nameDropDown").chosen();
             });
         });
+
+        //To get selected value an text of dropdownlist  
+        function SelectedValue(ddlObject) {
+            //Selected value of dropdownlist  
+            var selectedValue = ddlObject.value;
+            //Selected text of dropdownlist  
+            var selectedText = ddlObject.options[ddlObject.selectedIndex].innerHTML;
+
+            //alert popup with detail of seleceted value and text  
+            alert(" Selected Value: " + selectedValue + " -- " + "Selected Text: " + selectedText);
+        } 
 
     </script>
 }
